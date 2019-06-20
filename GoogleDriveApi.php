@@ -133,8 +133,9 @@ class GoogleDriveApi
      *
      * @param string $name
      * @param string $parentId
+     * @return string Id of created folder
      */
-    public function createFolder($name, $parentId="root")
+    public function createFolder($name, $parentId = "root")
     {
         $fileMetadata = new Google_Service_Drive_DriveFile(array(
             'name' => $name,
@@ -144,6 +145,57 @@ class GoogleDriveApi
         $file         = $this->service->files->create($fileMetadata,
             array(
             'fields' => 'id'));
+        return $file['id'];
+    }
+
+    /**
+     * Creates new file
+     *
+     * @param string $name Name of file ex. document1
+     * @param string $type Type of file ex. image
+     * @param string $extension Extension of file ex. docx
+     * @param string $pathToFileDir Path to directory where the file is located ex. /path/to/directory
+     * @param string $parentId Id of parent to be uploaded
+     * @return string Id of created file
+     */
+    public function uploadFile($name, $type, $extension, $pathToFileDir, $parentId = "root")
+    {
+        $content      = file_get_contents($pathToFile."/$name.$extension");
+        $fileMetadata = new Google_Service_Drive_DriveFile(array(
+            'name' => "$name.$extension",
+            'parents' => array($parentId)
+        ));
+        $file         = $this->service->files->create($fileMetadata,
+            array(
+            'data' => $content,
+            'mimeType' => "$type/$extension",
+            'uploadType' => 'multipart',
+            'fields' => 'id'
+        ));
+        return $file['id'];
+    }
+
+    /**
+     * Creates new empty file
+     *
+     * @param string $name Name of file ex. document1
+     * @param string $type Type of file ex. image
+     * @param string $extension Extension of file ex. docx
+     * @param string $parentId Id of parent to be uploaded
+     * @return string Id of created file
+     */
+    public function createFile($name, $type, $extension, $parentId = "root")
+    {
+        $fileMetadata = new Google_Service_Drive_DriveFile(array(
+            'name' => "$name.$extension",
+            'parents' => array($parentId)
+        ));
+        $file         = $this->service->files->create($fileMetadata,
+            array(
+            'mimeType' => "$type/$extension",
+            'uploadType' => 'multipart',
+            'fields' => 'id'
+        ));
         return $file['id'];
     }
 

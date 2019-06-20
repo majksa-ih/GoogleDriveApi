@@ -18,8 +18,10 @@
 * get email `getEmail()`
 * list files `listFiles($fields = "files(id, name, owners)")`
 * create folder `createFolder($name, $parentId = "root")`
-* upload file `uploadFile($name, $type, $extension, $pathToFileDir, $parentId = "root")`
-* create file `createFile($name, $type, $extension, $parentId = "root")`
+* upload file `uploadFile($fullName, $mimeType, $fullPath, $parentId = "root")`
+* upload file basic `uploadFileBasic($name, $type, $extension, $pathToFileDir, $parentId = "root")`
+* create file `createFile($fullName, $mimeType, $parentId = "root")`
+* create file basic `createFileBasic($name, $type, $extension, $parentId = "root")`
 * move file `moveFile($fileId, $folderId)`
 * download file `downloadFile($fileId)`
 * test files owners `testFilesOwners()`

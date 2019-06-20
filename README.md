@@ -21,6 +21,6 @@
 * upload file `uploadFile($name, $type, $extension, $pathToFileDir, $parentId = "root")`
 * create file `createFile($name, $type, $extension, $parentId = "root")`
 * move file `moveFile($fileId, $folderId)`
-* download file `downloadFile($fileId)`3
+* download file `downloadFile($fileId)`
 * test files owners `testFilesOwners()`
 * set verified owners `setVerifiedOwner($ids)`

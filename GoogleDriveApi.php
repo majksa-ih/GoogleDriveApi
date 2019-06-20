@@ -151,30 +151,13 @@ class GoogleDriveApi
     /**
      * Creates new file
      *
-     * @param string $name Name of file ex. document1
-     * @param string $type Type of file ex. image
-     * @param string $extension Extension of file ex. docx
-     * @param string $pathToFileDir Path to directory where the file is located ex. /path/to/directory
-     * @param string $parentId Id of parent to be uploaded
-     * @return string Id of created file
-     */
-    public function uploadFile($name, $type, $extension, $pathToFileDir,
-                               $parentId = "root")
-    {
-        return $this->uploadFileNonBasicType("$name.$extension",
-                "$type/$extension", $pathToFile."/$name.$extension", $parentId);
-    }
-
-    /**
-     * Creates new file
-     *
      * @param string $fullName Full name of file ex. document1.docx
      * @param string $mimeType Mime type ex. image/png
      * @param string $fullPath Path to file
      * @param string $parentId Id of parent to be uploaded
      * @return string
      */
-    public function uploadFileNonBasicType($fullName, $mimeType, $fullPath,
+    public function uploadFile($fullName, $mimeType, $fullPath,
                                            $parentId = "root")
     {
         $content      = file_get_contents($fullPath);
@@ -198,13 +181,15 @@ class GoogleDriveApi
      * @param string $name Name of file ex. document1
      * @param string $type Type of file ex. image
      * @param string $extension Extension of file ex. docx
+     * @param string $pathToFileDir Path to directory where the file is located ex. /path/to/directory
      * @param string $parentId Id of parent to be uploaded
      * @return string Id of created file
      */
-    public function createFile($name, $type, $extension, $parentId = "root")
+    public function uploadFileBasic($name, $type, $extension, $pathToFileDir,
+                               $parentId = "root")
     {
-        return $this->uploadFileNonBasicType("$name.$extension",
-                "$type/$extension", $parentId);
+        return $this->uploadFile("$name.$extension",
+                "$type/$extension", $pathToFile."/$name.$extension", $parentId);
     }
 
     /**
@@ -216,7 +201,7 @@ class GoogleDriveApi
      * @param string $parentId Id of parent to be uploaded
      * @return string Id of created file
      */
-    public function createFileNonBasicType($fullName, $mimeType,
+    public function createFile($fullName, $mimeType,
                                            $parentId = "root")
     {
         $fileMetadata = new Google_Service_Drive_DriveFile(array(
@@ -230,6 +215,21 @@ class GoogleDriveApi
             'fields' => 'id'
         ));
         return $file['id'];
+    }
+
+    /**
+     * Creates new file
+     *
+     * @param string $name Name of file ex. document1
+     * @param string $type Type of file ex. image
+     * @param string $extension Extension of file ex. docx
+     * @param string $parentId Id of parent to be uploaded
+     * @return string Id of created file
+     */
+    public function createFileBasic($name, $type, $extension, $parentId = "root")
+    {
+        return $this->createFile("$name.$extension",
+                "$type/$extension", $parentId);
     }
 
     /**

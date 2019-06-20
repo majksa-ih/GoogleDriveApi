@@ -205,12 +205,12 @@ class GoogleDriveApi
                                            $parentId = "root")
     {
         $fileMetadata = new Google_Service_Drive_DriveFile(array(
-            'name' => "$name.$extension",
+            'name' => $fullName,
             'parents' => array($parentId)
         ));
         $file         = $this->service->files->create($fileMetadata,
             array(
-            'mimeType' => "$type/$extension",
+            'mimeType' => $mimeType,
             'uploadType' => 'multipart',
             'fields' => 'id'
         ));

@@ -189,7 +189,7 @@ class GoogleDriveApi
                                $parentId = "root")
     {
         return $this->uploadFile("$name.$extension",
-                "$type/$extension", $pathToFile."/$name.$extension", $parentId);
+                "$type/$extension", $pathToFileDir."/$name.$extension", $parentId);
     }
 
     /**

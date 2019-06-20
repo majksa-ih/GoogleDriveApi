@@ -309,7 +309,7 @@ class GoogleDriveApi
      * @param array $ids Ids of files to be listed.
      * @return array $filesToBeReturned Files with id same as in $ids.
      */
-    private function getFilesByIds($ids)
+    private function get FilesByIds($ids)
     {
         $files             = $this->listFiles("files(id, name, permissions)");
         $filesToBeReturned = array();

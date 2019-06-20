@@ -46,13 +46,12 @@ class GoogleDriveApi
      */
     private $pathToCredentials;
 
-
     /**
      * Email that will be set as an owner of all files
      *
      * @final string
      */
-    const OWNER_EMAIL     = "";
+    const OWNER_EMAIL = "";
 
     /**
      * Emails, that are allowed as owner
@@ -60,7 +59,6 @@ class GoogleDriveApi
      * @final array
      */
     const VERIFIED_EMAILS = array();
-
 
     /**
      * Constructor of this class
@@ -128,6 +126,25 @@ class GoogleDriveApi
             }
         } while ($pageToken);
         return $result;
+    }
+
+    /**
+     * Creates new folder
+     *
+     * @param string $name
+     * @param string $parentId
+     */
+    public function createFolder($name, $parentId="root")
+    {
+        $fileMetadata = new Google_Service_Drive_DriveFile(array(
+            'name' => $name,
+            'mimeType' => 'application/vnd.google-apps.folder',
+            'parents' => array($parentId)
+        ));
+        $file         = $this->service->files->create($fileMetadata,
+            array(
+            'fields' => 'id'));
+        return $file['id'];
     }
 
     /**

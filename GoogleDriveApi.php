@@ -158,7 +158,8 @@ class GoogleDriveApi
      * @param string $parentId Id of parent to be uploaded
      * @return string Id of created file
      */
-    public function uploadFile($name, $type, $extension, $pathToFileDir, $parentId = "root")
+    public function uploadFile($name, $type, $extension, $pathToFileDir,
+                               $parentId = "root")
     {
         $content      = file_get_contents($pathToFile."/$name.$extension");
         $fileMetadata = new Google_Service_Drive_DriveFile(array(
@@ -197,6 +198,26 @@ class GoogleDriveApi
             'fields' => 'id'
         ));
         return $file['id'];
+    }
+
+    /**
+     * Moves file to another folder
+     *
+     * @param string $fileId File to be move
+     * @param string $folderId Final folder
+     */
+    public function moveFile($fileId, $folderId)
+    {
+        $emptyFileMetadata = new Google_Service_Drive_DriveFile();
+        $file              = $this->service->files->get($fileId,
+            array('fields' => 'parents'));
+        $previousParents   = join(',', $file->parents);
+        $file              = $this->service->files->update($fileId,
+            $emptyFileMetadata,
+            array(
+            'addParents' => $folderId,
+            'removeParents' => $previousParents,
+            'fields' => 'id, parents'));
     }
 
     /**

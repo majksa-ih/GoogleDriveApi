@@ -221,6 +221,21 @@ class GoogleDriveApi
     }
 
     /**
+     * Downloads file content
+     *
+     * @param string $fileId
+     * @return file_content
+     */
+    public function downloadFile($fileId)
+    {
+        $response = $this->service->files->get($fileId,
+            array(
+            'alt' => 'media'));
+        $content  = $response->getBody()->getContents();
+        return $content;
+    }
+
+    /**
      * List all files that aren't owned by allowed users.
      *
      * @return array $filesInDanger Array of files in danger.

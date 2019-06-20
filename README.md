@@ -2,6 +2,7 @@
 
 * Author: Majksa
 * Version: 1.0.0
+* PHP version: 7.0.0+
 
 ## Usage
 

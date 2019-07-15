@@ -71,7 +71,27 @@ class Google_Service_AndroidEnterprise extends Google_Service
         'devices',
         array(
           'methods' => array(
-            'get' => array(
+            'forceReportUpload' => array(
+              'path' => 'enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/forceReportUpload',
+              'httpMethod' => 'POST',
+              'parameters' => array(
+                'enterpriseId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'userId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'deviceId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'get' => array(
               'path' => 'enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}',
               'httpMethod' => 'GET',
               'parameters' => array(

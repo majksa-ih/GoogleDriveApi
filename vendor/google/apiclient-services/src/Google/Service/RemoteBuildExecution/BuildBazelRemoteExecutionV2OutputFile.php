@@ -17,11 +17,20 @@
 
 class Google_Service_RemoteBuildExecution_BuildBazelRemoteExecutionV2OutputFile extends Google_Model
 {
+  public $contents;
   protected $digestType = 'Google_Service_RemoteBuildExecution_BuildBazelRemoteExecutionV2Digest';
   protected $digestDataType = '';
   public $isExecutable;
   public $path;
 
+  public function setContents($contents)
+  {
+    $this->contents = $contents;
+  }
+  public function getContents()
+  {
+    return $this->contents;
+  }
   /**
    * @param Google_Service_RemoteBuildExecution_BuildBazelRemoteExecutionV2Digest
    */

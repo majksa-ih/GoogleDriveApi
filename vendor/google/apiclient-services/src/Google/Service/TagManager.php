@@ -19,11 +19,12 @@
  * Service definition for TagManager (v2).
  *
  * <p>
- * Accesses Tag Manager accounts and containers.</p>
+ * This API allows clients to access and modify container and tag
+ * configuration.</p>
  *
  * <p>
  * For more information about this service, see the API
- * <a href="https://developers.google.com/tag-manager/api/v2/" target="_blank">Documentation</a>
+ * <a href="https://developers.google.com/tag-manager" target="_blank">Documentation</a>
  * </p>
  *
  * @author Google, Inc.
@@ -76,8 +77,8 @@ class Google_Service_TagManager extends Google_Service
   {
     parent::__construct($client);
     $this->rootUrl = 'https://www.googleapis.com/';
-    $this->servicePath = 'tagmanager/v2/';
-    $this->batchPath = 'batch/tagmanager/v2';
+    $this->servicePath = '';
+    $this->batchPath = 'batch';
     $this->version = 'v2';
     $this->serviceName = 'tagmanager';
 
@@ -88,7 +89,7 @@ class Google_Service_TagManager extends Google_Service
         array(
           'methods' => array(
             'get' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'path' => array(
@@ -98,7 +99,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'list' => array(
-              'path' => 'accounts',
+              'path' => 'tagmanager/v2/accounts',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'pageToken' => array(
@@ -107,7 +108,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'update' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'PUT',
               'parameters' => array(
                 'path' => array(
@@ -131,7 +132,7 @@ class Google_Service_TagManager extends Google_Service
         array(
           'methods' => array(
             'create' => array(
-              'path' => '{+parent}/containers',
+              'path' => 'tagmanager/v2/{+parent}/containers',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'parent' => array(
@@ -141,7 +142,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'delete' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'DELETE',
               'parameters' => array(
                 'path' => array(
@@ -151,7 +152,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'get' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'path' => array(
@@ -161,7 +162,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'list' => array(
-              'path' => '{+parent}/containers',
+              'path' => 'tagmanager/v2/{+parent}/containers',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'parent' => array(
@@ -175,7 +176,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'update' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'PUT',
               'parameters' => array(
                 'path' => array(
@@ -199,7 +200,7 @@ class Google_Service_TagManager extends Google_Service
         array(
           'methods' => array(
             'create' => array(
-              'path' => '{+parent}/environments',
+              'path' => 'tagmanager/v2/{+parent}/environments',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'parent' => array(
@@ -209,7 +210,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'delete' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'DELETE',
               'parameters' => array(
                 'path' => array(
@@ -219,7 +220,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'get' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'path' => array(
@@ -229,7 +230,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'list' => array(
-              'path' => '{+parent}/environments',
+              'path' => 'tagmanager/v2/{+parent}/environments',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'parent' => array(
@@ -243,7 +244,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'reauthorize' => array(
-              'path' => '{+path}:reauthorize',
+              'path' => 'tagmanager/v2/{+path}:reauthorize',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'path' => array(
@@ -253,7 +254,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'update' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'PUT',
               'parameters' => array(
                 'path' => array(
@@ -277,7 +278,7 @@ class Google_Service_TagManager extends Google_Service
         array(
           'methods' => array(
             'latest' => array(
-              'path' => '{+parent}/version_headers:latest',
+              'path' => 'tagmanager/v2/{+parent}/version_headers:latest',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'parent' => array(
@@ -287,7 +288,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'list' => array(
-              'path' => '{+parent}/version_headers',
+              'path' => 'tagmanager/v2/{+parent}/version_headers',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'parent' => array(
@@ -295,13 +296,13 @@ class Google_Service_TagManager extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'includeDeleted' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
                 'pageToken' => array(
                   'location' => 'query',
                   'type' => 'string',
+                ),
+                'includeDeleted' => array(
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ),
               ),
             ),
@@ -315,7 +316,7 @@ class Google_Service_TagManager extends Google_Service
         array(
           'methods' => array(
             'delete' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'DELETE',
               'parameters' => array(
                 'path' => array(
@@ -325,7 +326,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'get' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'path' => array(
@@ -339,7 +340,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'live' => array(
-              'path' => '{+parent}/versions:live',
+              'path' => 'tagmanager/v2/{+parent}/versions:live',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'parent' => array(
@@ -349,7 +350,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'publish' => array(
-              'path' => '{+path}:publish',
+              'path' => 'tagmanager/v2/{+path}:publish',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'path' => array(
@@ -363,7 +364,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'set_latest' => array(
-              'path' => '{+path}:set_latest',
+              'path' => 'tagmanager/v2/{+path}:set_latest',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'path' => array(
@@ -373,7 +374,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'undelete' => array(
-              'path' => '{+path}:undelete',
+              'path' => 'tagmanager/v2/{+path}:undelete',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'path' => array(
@@ -383,7 +384,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'update' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'PUT',
               'parameters' => array(
                 'path' => array(
@@ -407,7 +408,7 @@ class Google_Service_TagManager extends Google_Service
         array(
           'methods' => array(
             'create' => array(
-              'path' => '{+parent}/workspaces',
+              'path' => 'tagmanager/v2/{+parent}/workspaces',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'parent' => array(
@@ -417,7 +418,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'create_version' => array(
-              'path' => '{+path}:create_version',
+              'path' => 'tagmanager/v2/{+path}:create_version',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'path' => array(
@@ -427,7 +428,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'delete' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'DELETE',
               'parameters' => array(
                 'path' => array(
@@ -437,7 +438,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'get' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'path' => array(
@@ -447,7 +448,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'getStatus' => array(
-              'path' => '{+path}/status',
+              'path' => 'tagmanager/v2/{+path}/status',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'path' => array(
@@ -457,7 +458,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'list' => array(
-              'path' => '{+parent}/workspaces',
+              'path' => 'tagmanager/v2/{+parent}/workspaces',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'parent' => array(
@@ -471,7 +472,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'quick_preview' => array(
-              'path' => '{+path}:quick_preview',
+              'path' => 'tagmanager/v2/{+path}:quick_preview',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'path' => array(
@@ -481,7 +482,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'resolve_conflict' => array(
-              'path' => '{+path}:resolve_conflict',
+              'path' => 'tagmanager/v2/{+path}:resolve_conflict',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'path' => array(
@@ -495,7 +496,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'sync' => array(
-              'path' => '{+path}:sync',
+              'path' => 'tagmanager/v2/{+path}:sync',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'path' => array(
@@ -505,7 +506,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'update' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'PUT',
               'parameters' => array(
                 'path' => array(
@@ -529,7 +530,7 @@ class Google_Service_TagManager extends Google_Service
         array(
           'methods' => array(
             'create' => array(
-              'path' => '{+parent}/built_in_variables',
+              'path' => 'tagmanager/v2/{+parent}/built_in_variables',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'parent' => array(
@@ -544,7 +545,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'delete' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'DELETE',
               'parameters' => array(
                 'path' => array(
@@ -559,7 +560,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'list' => array(
-              'path' => '{+parent}/built_in_variables',
+              'path' => 'tagmanager/v2/{+parent}/built_in_variables',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'parent' => array(
@@ -573,7 +574,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'revert' => array(
-              'path' => '{+path}/built_in_variables:revert',
+              'path' => 'tagmanager/v2/{+path}/built_in_variables:revert',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'path' => array(
@@ -597,7 +598,7 @@ class Google_Service_TagManager extends Google_Service
         array(
           'methods' => array(
             'create' => array(
-              'path' => '{+parent}/folders',
+              'path' => 'tagmanager/v2/{+parent}/folders',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'parent' => array(
@@ -607,7 +608,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'delete' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'DELETE',
               'parameters' => array(
                 'path' => array(
@@ -617,7 +618,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'entities' => array(
-              'path' => '{+path}:entities',
+              'path' => 'tagmanager/v2/{+path}:entities',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'path' => array(
@@ -631,7 +632,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'get' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'path' => array(
@@ -641,7 +642,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'list' => array(
-              'path' => '{+parent}/folders',
+              'path' => 'tagmanager/v2/{+parent}/folders',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'parent' => array(
@@ -655,13 +656,18 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'move_entities_to_folder' => array(
-              'path' => '{+path}:move_entities_to_folder',
+              'path' => 'tagmanager/v2/{+path}:move_entities_to_folder',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'path' => array(
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ),
+                'variableId' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
                 ),
                 'tagId' => array(
                   'location' => 'query',
@@ -673,14 +679,9 @@ class Google_Service_TagManager extends Google_Service
                   'type' => 'string',
                   'repeated' => true,
                 ),
-                'variableId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
               ),
             ),'revert' => array(
-              'path' => '{+path}:revert',
+              'path' => 'tagmanager/v2/{+path}:revert',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'path' => array(
@@ -694,7 +695,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'update' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'PUT',
               'parameters' => array(
                 'path' => array(
@@ -718,7 +719,7 @@ class Google_Service_TagManager extends Google_Service
         array(
           'methods' => array(
             'create' => array(
-              'path' => '{+parent}/tags',
+              'path' => 'tagmanager/v2/{+parent}/tags',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'parent' => array(
@@ -728,7 +729,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'delete' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'DELETE',
               'parameters' => array(
                 'path' => array(
@@ -738,7 +739,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'get' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'path' => array(
@@ -748,7 +749,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'list' => array(
-              'path' => '{+parent}/tags',
+              'path' => 'tagmanager/v2/{+parent}/tags',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'parent' => array(
@@ -762,7 +763,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'revert' => array(
-              'path' => '{+path}:revert',
+              'path' => 'tagmanager/v2/{+path}:revert',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'path' => array(
@@ -776,7 +777,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'update' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'PUT',
               'parameters' => array(
                 'path' => array(
@@ -800,7 +801,7 @@ class Google_Service_TagManager extends Google_Service
         array(
           'methods' => array(
             'create' => array(
-              'path' => '{+parent}/templates',
+              'path' => 'tagmanager/v2/{+parent}/templates',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'parent' => array(
@@ -810,7 +811,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'delete' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'DELETE',
               'parameters' => array(
                 'path' => array(
@@ -820,7 +821,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'get' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'path' => array(
@@ -830,7 +831,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'list' => array(
-              'path' => '{+parent}/templates',
+              'path' => 'tagmanager/v2/{+parent}/templates',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'parent' => array(
@@ -844,7 +845,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'revert' => array(
-              'path' => '{+path}:revert',
+              'path' => 'tagmanager/v2/{+path}:revert',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'path' => array(
@@ -858,7 +859,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'update' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'PUT',
               'parameters' => array(
                 'path' => array(
@@ -882,7 +883,7 @@ class Google_Service_TagManager extends Google_Service
         array(
           'methods' => array(
             'create' => array(
-              'path' => '{+parent}/triggers',
+              'path' => 'tagmanager/v2/{+parent}/triggers',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'parent' => array(
@@ -892,7 +893,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'delete' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'DELETE',
               'parameters' => array(
                 'path' => array(
@@ -902,7 +903,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'get' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'path' => array(
@@ -912,7 +913,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'list' => array(
-              'path' => '{+parent}/triggers',
+              'path' => 'tagmanager/v2/{+parent}/triggers',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'parent' => array(
@@ -926,7 +927,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'revert' => array(
-              'path' => '{+path}:revert',
+              'path' => 'tagmanager/v2/{+path}:revert',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'path' => array(
@@ -940,7 +941,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'update' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'PUT',
               'parameters' => array(
                 'path' => array(
@@ -964,7 +965,7 @@ class Google_Service_TagManager extends Google_Service
         array(
           'methods' => array(
             'create' => array(
-              'path' => '{+parent}/variables',
+              'path' => 'tagmanager/v2/{+parent}/variables',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'parent' => array(
@@ -974,7 +975,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'delete' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'DELETE',
               'parameters' => array(
                 'path' => array(
@@ -984,7 +985,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'get' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'path' => array(
@@ -994,7 +995,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'list' => array(
-              'path' => '{+parent}/variables',
+              'path' => 'tagmanager/v2/{+parent}/variables',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'parent' => array(
@@ -1008,7 +1009,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'revert' => array(
-              'path' => '{+path}:revert',
+              'path' => 'tagmanager/v2/{+path}:revert',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'path' => array(
@@ -1022,7 +1023,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'update' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'PUT',
               'parameters' => array(
                 'path' => array(
@@ -1046,7 +1047,7 @@ class Google_Service_TagManager extends Google_Service
         array(
           'methods' => array(
             'create' => array(
-              'path' => '{+parent}/zones',
+              'path' => 'tagmanager/v2/{+parent}/zones',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'parent' => array(
@@ -1056,7 +1057,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'delete' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'DELETE',
               'parameters' => array(
                 'path' => array(
@@ -1066,7 +1067,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'get' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'path' => array(
@@ -1076,7 +1077,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'list' => array(
-              'path' => '{+parent}/zones',
+              'path' => 'tagmanager/v2/{+parent}/zones',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'parent' => array(
@@ -1090,7 +1091,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'revert' => array(
-              'path' => '{+path}:revert',
+              'path' => 'tagmanager/v2/{+path}:revert',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'path' => array(
@@ -1104,7 +1105,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'update' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'PUT',
               'parameters' => array(
                 'path' => array(
@@ -1128,7 +1129,7 @@ class Google_Service_TagManager extends Google_Service
         array(
           'methods' => array(
             'create' => array(
-              'path' => '{+parent}/user_permissions',
+              'path' => 'tagmanager/v2/{+parent}/user_permissions',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'parent' => array(
@@ -1138,7 +1139,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'delete' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'DELETE',
               'parameters' => array(
                 'path' => array(
@@ -1148,7 +1149,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'get' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'path' => array(
@@ -1158,7 +1159,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'list' => array(
-              'path' => '{+parent}/user_permissions',
+              'path' => 'tagmanager/v2/{+parent}/user_permissions',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'parent' => array(
@@ -1172,7 +1173,7 @@ class Google_Service_TagManager extends Google_Service
                 ),
               ),
             ),'update' => array(
-              'path' => '{+path}',
+              'path' => 'tagmanager/v2/{+path}',
               'httpMethod' => 'PUT',
               'parameters' => array(
                 'path' => array(

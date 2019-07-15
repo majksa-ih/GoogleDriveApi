@@ -19,6 +19,7 @@ class Google_Service_RemoteBuildExecution_GoogleDevtoolsRemotebuildexecutionAdmi
 {
   public $diskSizeGb;
   public $diskType;
+  public $labels;
   public $machineType;
   public $minCpuPlatform;
   public $reserved;
@@ -38,6 +39,14 @@ class Google_Service_RemoteBuildExecution_GoogleDevtoolsRemotebuildexecutionAdmi
   public function getDiskType()
   {
     return $this->diskType;
+  }
+  public function setLabels($labels)
+  {
+    $this->labels = $labels;
+  }
+  public function getLabels()
+  {
+    return $this->labels;
   }
   public function setMachineType($machineType)
   {

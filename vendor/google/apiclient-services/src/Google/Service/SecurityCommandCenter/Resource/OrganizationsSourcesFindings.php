@@ -77,6 +77,21 @@ class Google_Service_SecurityCommandCenter_Resource_OrganizationsSourcesFindings
    * sources provide a source_id of `-`. For example: organizations/123/sources/-
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string orderBy Expression that defines what fields and order to
+   * use for sorting. The string value should follow SQL syntax: comma separated
+   * list of fields. For example: "name,resource_properties.a_property". The
+   * default sorting order is ascending. To specify descending order for a field,
+   * a suffix " desc" should be appended to the field name. For example: "name
+   * desc,source_properties.a_property". Redundant space characters in the syntax
+   * are insignificant. "name desc,source_properties.a_property" and " name
+   * desc  ,   source_properties.a_property  " are equivalent.
+   *
+   * The following fields are supported: name parent state category resource_name
+   * event_time source_properties security_marks
+   * @opt_param string readTime Time used as a reference point when filtering
+   * findings. The filter is limited to findings existing at the supplied time and
+   * their values are those at that specific time. Absence of this field will
+   * default to the API's version of NOW.
    * @opt_param string compareDuration When compare_duration is set, the
    * ListFindingsResult's "state_change" attribute is updated to indicate whether
    * the finding had its state changed, the finding's state remained unchanged, or
@@ -128,30 +143,15 @@ class Google_Service_SecurityCommandCenter_Resource_OrganizationsSourcesFindings
    * security_marks: `=`, `:` source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`
    *
    * For example, `source_properties.size = 100` is a valid filter string.
-   * @opt_param string pageToken The value returned by the last
-   * `ListFindingsResponse`; indicates that this is a continuation of a prior
-   * `ListFindings` call, and that the system should return the next page of data.
    * @opt_param string fieldMask Optional.
    *
    * A field mask to specify the Finding fields to be listed in the response. An
    * empty field mask will list all fields.
+   * @opt_param string pageToken The value returned by the last
+   * `ListFindingsResponse`; indicates that this is a continuation of a prior
+   * `ListFindings` call, and that the system should return the next page of data.
    * @opt_param int pageSize The maximum number of results to return in a single
    * response. Default is 10, minimum is 1, maximum is 1000.
-   * @opt_param string readTime Time used as a reference point when filtering
-   * findings. The filter is limited to findings existing at the supplied time and
-   * their values are those at that specific time. Absence of this field will
-   * default to the API's version of NOW.
-   * @opt_param string orderBy Expression that defines what fields and order to
-   * use for sorting. The string value should follow SQL syntax: comma separated
-   * list of fields. For example: "name,resource_properties.a_property". The
-   * default sorting order is ascending. To specify descending order for a field,
-   * a suffix " desc" should be appended to the field name. For example: "name
-   * desc,source_properties.a_property". Redundant space characters in the syntax
-   * are insignificant. "name desc,source_properties.a_property" and " name
-   * desc  ,   source_properties.a_property  " are equivalent.
-   *
-   * The following fields are supported: name parent state category resource_name
-   * event_time source_properties security_marks
    * @return Google_Service_SecurityCommandCenter_ListFindingsResponse
    */
   public function listOrganizationsSourcesFindings($parent, $optParams = array())
@@ -210,14 +210,14 @@ class Google_Service_SecurityCommandCenter_Resource_OrganizationsSourcesFindings
    * @param Google_Service_SecurityCommandCenter_SecurityMarks $postBody
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string startTime The time at which the updated SecurityMarks take
+   * effect. If not set uses current server time.  Updates will be applied to the
+   * SecurityMarks that are active immediately preceding this time.
    * @opt_param string updateMask The FieldMask to use when updating the security
    * marks resource.
    *
    * The field mask must not contain duplicate fields. If empty or set to "marks",
    * all marks will be replaced.  Individual marks can be updated using "marks.".
-   * @opt_param string startTime The time at which the updated SecurityMarks take
-   * effect. If not set uses current server time.  Updates will be applied to the
-   * SecurityMarks that are active immediately preceding this time.
    * @return Google_Service_SecurityCommandCenter_SecurityMarks
    */
   public function updateSecurityMarks($name, Google_Service_SecurityCommandCenter_SecurityMarks $postBody, $optParams = array())

@@ -46,6 +46,16 @@ class Google_Service_ServiceManagement_Resource_ServicesRollouts extends Google_
    * `example.googleapis.com`.
    * @param Google_Service_ServiceManagement_Rollout $postBody
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param string baseRolloutId Unimplemented. Do not use this feature until
+   * this comment is removed.
+   *
+   * The rollout id that rollout to be created based on.
+   *
+   * Rollout should be constructed based on current successful rollout, this field
+   * indicates the current successful rollout id that new rollout based on to
+   * construct, if current successful rollout changed when server receives the
+   * request, request will be rejected for safety.
    * @return Google_Service_ServiceManagement_Operation
    */
   public function create($serviceName, Google_Service_ServiceManagement_Rollout $postBody, $optParams = array())

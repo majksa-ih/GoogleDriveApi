@@ -28,7 +28,7 @@
  *
  * <p>
  * For more information about this service, see the API
- * <a href="https://conversationai.github.io/" target="_blank">Documentation</a>
+ * <a href="https://github.com/conversationai/perspectiveapi/blob/master/README.md" target="_blank">Documentation</a>
  * </p>
  *
  * @author Google, Inc.

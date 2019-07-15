@@ -127,16 +127,16 @@ class Google_Service_StreetViewPublish extends Google_Service
               'path' => 'v1/photos:batchGet',
               'httpMethod' => 'GET',
               'parameters' => array(
-                'languageCode' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
                 'photoIds' => array(
                   'location' => 'query',
                   'type' => 'string',
                   'repeated' => true,
                 ),
                 'view' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'languageCode' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
@@ -149,14 +149,6 @@ class Google_Service_StreetViewPublish extends Google_Service
               'path' => 'v1/photos',
               'httpMethod' => 'GET',
               'parameters' => array(
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'languageCode' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
                 'pageToken' => array(
                   'location' => 'query',
                   'type' => 'string',
@@ -166,6 +158,14 @@ class Google_Service_StreetViewPublish extends Google_Service
                   'type' => 'integer',
                 ),
                 'view' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'filter' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'languageCode' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),

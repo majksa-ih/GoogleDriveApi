@@ -17,4 +17,14 @@
 
 class Google_Service_FirebaseCloudMessaging_ApnsFcmOptions extends Google_Model
 {
+  public $analyticsLabel;
+
+  public function setAnalyticsLabel($analyticsLabel)
+  {
+    $this->analyticsLabel = $analyticsLabel;
+  }
+  public function getAnalyticsLabel()
+  {
+    return $this->analyticsLabel;
+  }
 }

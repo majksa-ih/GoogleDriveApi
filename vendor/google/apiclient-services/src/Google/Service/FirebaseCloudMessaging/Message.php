@@ -23,6 +23,8 @@ class Google_Service_FirebaseCloudMessaging_Message extends Google_Model
   protected $apnsDataType = '';
   public $condition;
   public $data;
+  protected $fcmOptionsType = 'Google_Service_FirebaseCloudMessaging_FcmOptions';
+  protected $fcmOptionsDataType = '';
   public $name;
   protected $notificationType = 'Google_Service_FirebaseCloudMessaging_Notification';
   protected $notificationDataType = '';
@@ -74,6 +76,20 @@ class Google_Service_FirebaseCloudMessaging_Message extends Google_Model
   public function getData()
   {
     return $this->data;
+  }
+  /**
+   * @param Google_Service_FirebaseCloudMessaging_FcmOptions
+   */
+  public function setFcmOptions(Google_Service_FirebaseCloudMessaging_FcmOptions $fcmOptions)
+  {
+    $this->fcmOptions = $fcmOptions;
+  }
+  /**
+   * @return Google_Service_FirebaseCloudMessaging_FcmOptions
+   */
+  public function getFcmOptions()
+  {
+    return $this->fcmOptions;
   }
   public function setName($name)
   {

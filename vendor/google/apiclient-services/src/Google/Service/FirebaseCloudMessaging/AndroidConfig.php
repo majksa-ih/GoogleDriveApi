@@ -19,6 +19,8 @@ class Google_Service_FirebaseCloudMessaging_AndroidConfig extends Google_Model
 {
   public $collapseKey;
   public $data;
+  protected $fcmOptionsType = 'Google_Service_FirebaseCloudMessaging_AndroidFcmOptions';
+  protected $fcmOptionsDataType = '';
   protected $notificationType = 'Google_Service_FirebaseCloudMessaging_AndroidNotification';
   protected $notificationDataType = '';
   public $priority;
@@ -40,6 +42,20 @@ class Google_Service_FirebaseCloudMessaging_AndroidConfig extends Google_Model
   public function getData()
   {
     return $this->data;
+  }
+  /**
+   * @param Google_Service_FirebaseCloudMessaging_AndroidFcmOptions
+   */
+  public function setFcmOptions(Google_Service_FirebaseCloudMessaging_AndroidFcmOptions $fcmOptions)
+  {
+    $this->fcmOptions = $fcmOptions;
+  }
+  /**
+   * @return Google_Service_FirebaseCloudMessaging_AndroidFcmOptions
+   */
+  public function getFcmOptions()
+  {
+    return $this->fcmOptions;
   }
   /**
    * @param Google_Service_FirebaseCloudMessaging_AndroidNotification

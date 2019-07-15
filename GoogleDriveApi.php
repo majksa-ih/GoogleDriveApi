@@ -1,5 +1,7 @@
 <?php
+//ini_set('display_errors',1);
 require __DIR__.'/vendor/autoload.php';
+require __DIR__.'/Token.php';
 
 /**
  * Class that operates with google drive api
@@ -24,6 +26,13 @@ class GoogleDriveApi
      * @var Google_Client
      */
     private $client;
+
+    /**
+     * Client's token.
+     *
+     * @var Token
+     */
+    private $token;
 
     /**
      * Service that operates with google drive.
@@ -61,6 +70,11 @@ class GoogleDriveApi
     const VERIFIED_EMAILS = array();
 
     /**
+     * Id of root directory.
+     */
+    const ROOT_DIR = "root";
+
+    /**
      * Constructor of this class
      *
      * @param string $pathToCredentials This is the path to downloaded credentials
@@ -69,7 +83,7 @@ class GoogleDriveApi
     {
         $this->pathToCredentials = $pathToCredentials;
         $this->initClient();
-        $this->initToken();
+        $this->token             = new Token($this->client);
         $this->service           = new Google_Service_Drive($this->client);
         $this->email             = $this->getUsersEmail();
         $this->ownerPermission   = new Google_Service_Drive_Permission(array(
@@ -94,7 +108,7 @@ class GoogleDriveApi
      */
     public function logOut()
     {
-        $this->setTokenCookie(true);
+        $this->token->reset();
     }
 
     /**
@@ -135,7 +149,7 @@ class GoogleDriveApi
      * @param string $parentId
      * @return string Id of created folder
      */
-    public function createFolder($name, $parentId = "root")
+    public function createFolder($name, $parentId = ROOT_DIR)
     {
         $fileMetadata = new Google_Service_Drive_DriveFile(array(
             'name' => $name,
@@ -158,7 +172,7 @@ class GoogleDriveApi
      * @return string
      */
     public function uploadFile($fullName, $mimeType, $fullPath,
-                                           $parentId = "root")
+                               $parentId = ROOT_DIR)
     {
         $content      = file_get_contents($fullPath);
         $fileMetadata = new Google_Service_Drive_DriveFile(array(
@@ -186,10 +200,10 @@ class GoogleDriveApi
      * @return string Id of created file
      */
     public function uploadFileBasic($name, $type, $extension, $pathToFileDir,
-                               $parentId = "root")
+                                    $parentId = ROOT_DIR)
     {
-        return $this->uploadFile("$name.$extension",
-                "$type/$extension", $pathToFileDir."/$name.$extension", $parentId);
+        return $this->uploadFile("$name.$extension", "$type/$extension",
+                $pathToFileDir."/$name.$extension", $parentId);
     }
 
     /**
@@ -201,8 +215,7 @@ class GoogleDriveApi
      * @param string $parentId Id of parent to be uploaded
      * @return string Id of created file
      */
-    public function createFile($fullName, $mimeType,
-                                           $parentId = "root")
+    public function createFile($fullName, $mimeType, $parentId = ROOT_DIR)
     {
         $fileMetadata = new Google_Service_Drive_DriveFile(array(
             'name' => $fullName,
@@ -226,10 +239,10 @@ class GoogleDriveApi
      * @param string $parentId Id of parent to be uploaded
      * @return string Id of created file
      */
-    public function createFileBasic($name, $type, $extension, $parentId = "root")
+    public function createFileBasic($name, $type, $extension, $parentId = ROOT_DIR)
     {
-        return $this->createFile("$name.$extension",
-                "$type/$extension", $parentId);
+        return $this->createFile("$name.$extension", "$type/$extension",
+                $parentId);
     }
 
     /**
@@ -244,8 +257,7 @@ class GoogleDriveApi
         $file              = $this->service->files->get($fileId,
             array('fields' => 'parents'));
         $previousParents   = join(',', $file->parents);
-        $file              = $this->service->files->update($fileId,
-            $emptyFileMetadata,
+        $this->service->files->update($fileId, $emptyFileMetadata,
             array(
             'addParents' => $folderId,
             'removeParents' => $previousParents,
@@ -343,75 +355,5 @@ class GoogleDriveApi
         $this->client->setAuthConfig($this->pathToCredentials);
         $this->client->setAccessType('offline');
         $this->client->setPrompt('select_account consent');
-    }
-
-    /**
-     * Inits token
-     */
-    private function initToken()
-    {
-        if (isset($_COOKIE['token'])) {
-            // TOKEN EXISTS
-            $this->getToken();
-        }
-        if ($this->client->isAccessTokenExpired()) {
-            if ($this->client->getRefreshToken()) {
-                // TOKEN IS EXPIRED
-                $this->refreshToken();
-            } else {
-                // TOKEN IS NOT CREATED YET
-                $this->createToken();
-            }
-        }
-    }
-
-    /**
-     * Gets token.
-     * Called only if token exists.
-     */
-    private function getToken()
-    {
-        $accessToken = json_decode($_COOKIE['token'], true);
-        $this->client->setAccessToken($accessToken);
-    }
-
-    /**
-     * Refreshes token.
-     * Called only if token doesn't exist but refresh token does.
-     */
-    private function refreshToken()
-    {
-        $this->client->fetchAccessTokenWithRefreshToken($this->client->getRefreshToken());
-        $this->setTokenCookie();
-    }
-
-    /**
-     * Creates new token.
-     */
-    private function createToken()
-    {
-        if (isset($_GET['code'])) {
-            $this->client->authenticate($_GET['code']);
-            $this->setTokenCookie();
-            $redirectUri = json_decode(file_get_contents($this->pathToCredentials),
-                    true)["web"]["redirect_uris"][0];
-            header("Location: $redirectUri?login");
-        } else {
-            $authUrl = $this->client->createAuthUrl();
-            header('Location: '.filter_var($authUrl, FILTER_SANITIZE_URL));
-        }
-    }
-
-    /**
-     * Stores or deletes token from Cookie
-     *
-     * @param bool $delete If the cookie should be unset.
-     */
-    private function setTokenCookie($delete = false)
-    {
-        $time = $delete ? time() - 3600 : time() + 3600;
-        setcookie(
-            "token", json_encode($this->client->getAccessToken()), $time
-        );
     }
 }

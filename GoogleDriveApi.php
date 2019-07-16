@@ -1,5 +1,4 @@
 <?php
-//ini_set('display_errors',1);
 require __DIR__.'/vendor/autoload.php';
 require __DIR__.'/Token.php';
 
@@ -123,16 +122,16 @@ class GoogleDriveApi
         $pageToken = null;
 
         do {
-            try {
-                $parameters = array(
-                    "fields" => "nextPageToken, $fields"
-                );
-                if ($pageToken) {
-                    $parameters['pageToken'] = $pageToken;
-                }
-                $files = $this->service->files->listFiles($parameters);
+            $parameters = array(
+                "fields" => "nextPageToken, $fields"
+            );
+            if ($pageToken) {
+                $parameters['pageToken'] = $pageToken;
+            }
+            $files = $this->service->files->listFiles($parameters);
 
-                $result    = array_merge($result, $files->getFiles());
+            $result = array_merge($result, $files->getFiles());
+            try {
                 $pageToken = $files->getNextPageToken();
             } catch (Exception $e) {
                 print "An error occurred: ".$e->getMessage();
@@ -239,7 +238,8 @@ class GoogleDriveApi
      * @param string $parentId Id of parent to be uploaded
      * @return string Id of created file
      */
-    public function createFileBasic($name, $type, $extension, $parentId = ROOT_DIR)
+    public function createFileBasic($name, $type, $extension,
+                                    $parentId = ROOT_DIR)
     {
         return $this->createFile("$name.$extension", "$type/$extension",
                 $parentId);
